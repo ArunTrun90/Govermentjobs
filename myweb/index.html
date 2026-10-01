@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Govt Jobs & Schemes Portal</title>
+    <meta
+      name="description"
+      content="Government jobs, latest notifications, scheme forms, and exam updates in one 3D portal."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <div class="auth-screen" id="authScreen">
+      <div class="auth-card glass">
+        <div class="brand-row">
+          <div class="brand-icon">G</div>
+          <div>
+            <span class="eyebrow">NATIONAL PORTAL</span>
+            <h1>Govt Jobs & Schemes</h1>
+          </div>
+        </div>
+
+        <p class="welcome-text">
+          Secure access to the latest government jobs, exam alerts, and scheme forms.
+        </p>
+
+        <button class="google-btn auth-btn" id="googleLoginBtn">
+          <span class="icon-google">G</span>
+          Continue with Google
+        </button>
+
+        <div class="divider"><span>or</span></div>
+
+        <div class="phone-block">
+          <label for="phoneInput">Mobile Number</label>
+          <div class="input-row">
+            <span class="country-code">+91</span>
+            <input id="phoneInput" type="tel" maxlength="10" placeholder="98765 43210" />
+          </div>
+          <button class="otp-btn auth-btn" id="sendOtpBtn">Send OTP</button>
+        </div>
+
+        <div class="otp-box hidden" id="otpBox">
+          <label for="otpInput">Enter OTP</label>
+          <input id="otpInput" type="text" maxlength="6" placeholder="123456" />
+          <button class="primary-btn auth-btn" id="verifyOtpBtn">Verify & Continue</button>
+          <p class="demo-note">Demo OTP: 123456</p>
+        </div>
+
+        <p class="auth-footer">
+          By continuing, you agree to receive job and scheme alerts on your registered mobile.
+        </p>
+      </div>
+    </div>
+
+    <div class="app-shell hidden" id="appShell">
+      <header class="topbar glass">
+        <div class="brand-inline">
+          <div class="brand-icon small">G</div>
+          <div>
+            <span class="eyebrow">Government Portal</span>
+            <strong>GovJobHub</strong>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <a href="#jobs">Jobs</a>
+          <a href="#schemes">Schemes</a>
+          <a href="#upcoming">Upcoming</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <div class="toolbar">
+          <button class="ghost-btn" id="openAdminBtn">Admin</button>
+          <button class="ghost-btn">Alerts</button>
+          <button class="primary-btn" id="logoutBtn">Logout</button>
+        </div>
+      </header>
+
+      <main id="userContent">
+        <section class="hero">
+          <div class="hero-copy">
+            <span class="kicker">Latest Government Updates</span>
+            <h2>Find the right job, scheme, and exam before the deadline.</h2>
+            <p>
+              Stay updated with SSC, UPSC, Railway, Banking, Defense, State Govt, and welfare scheme forms.
+            </p>
+
+            <div class="cta-row">
+              <a class="primary-btn large" href="#jobs">Explore Jobs</a>
+              <a class="secondary-btn large" href="#schemes">View Schemes</a>
+            </div>
+
+            <div class="mini-stats">
+              <div class="stat-box glass">
+                <strong>12k+</strong>
+                <span>Applicants</span>
+              </div>
+              <div class="stat-box glass">
+                <strong>350+</strong>
+                <span>Live Jobs</span>
+              </div>
+              <div class="stat-box glass">
+                <strong>98%</strong>
+                <span>Update Accuracy</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="floating-card card-one glass">
+              <small>Recruitment</small>
+              <h3>SSC CGL 2026</h3>
+              <p>New vacancies announced • 1,200 posts</p>
+            </div>
+            <div class="floating-card card-two glass">
+              <small>Scheme</small>
+              <h3>PM-Kisan</h3>
+              <p>Beneficiary verification open</p>
+            </div>
+            <div class="pulse-ring"></div>
+          </div>
+        </section>
+
+        <section class="search-panel glass" id="jobs">
+          <div class="search-header">
+            <div>
+              <span class="eyebrow">Filter by category</span>
+              <h3>Latest Government Jobs</h3>
+            </div>
+            <div class="search-box">
+              <input type="text" id="jobSearchInput" placeholder="Search job title or department" />
+            </div>
+          </div>
+
+          <div class="tag-row" id="categoryFilters">
+            <button class="filter-btn active" data-tag="All">All</button>
+            <button class="filter-btn" data-tag="SSC">SSC</button>
+            <button class="filter-btn" data-tag="Railway">Railway</button>
+            <button class="filter-btn" data-tag="Bank">Bank</button>
+            <button class="filter-btn" data-tag="UPSC">UPSC</button>
+            <button class="filter-btn" data-tag="Defence">Defence</button>
+            <button class="filter-btn" data-tag="State">State</button>
+          </div>
+
+          <div class="job-list" id="jobList"></div>
+        </section>
+
+        <section class="schemes-section" id="schemes">
+          <div class="section-heading">
+            <span class="eyebrow">Popular schemes</span>
+            <h3>Apply for welfare and citizen schemes</h3>
+          </div>
+          <div class="scheme-grid" id="schemeList"></div>
+        </section>
+
+        <section class="upcoming-section" id="upcoming">
+          <div class="section-heading">
+            <span class="eyebrow">What’s Next</span>
+            <h3>Calendar of upcoming exams & alerts</h3>
+          </div>
+          <div class="timeline-list">
+            <article class="timeline-item glass">
+              <span class="date-pill">20 Aug</span>
+              <div>
+                <h4>IBPS Clerk Prelims</h4>
+                <p>Application correction window active</p>
+              </div>
+            </article>
+            <article class="timeline-item glass">
+              <span class="date-pill">25 Aug</span>
+              <div>
+                <h4>SSC CHSL Admit Card</h4>
+                <p>Download link to be activated soon</p>
+              </div>
+            </article>
+            <article class="timeline-item glass">
+              <span class="date-pill">02 Sep</span>
+              <div>
+                <h4>State PSC Recruitment</h4>
+                <p>New state-level openings in 8 departments</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="faq-section" id="faq">
+          <div class="section-heading">
+            <span class="eyebrow">Quick answers</span>
+            <h3>How it works</h3>
+          </div>
+          <div class="faq-grid">
+            <div class="faq-card glass">
+              <h4>1. Sign in securely</h4>
+              <p>Continue with Google or verify your mobile number with OTP.</p>
+            </div>
+            <div class="faq-card glass">
+              <h4>2. Discover alerts</h4>
+              <p>Browse the latest vacancies, deadlines, and scheme notices.</p>
+            </div>
+            <div class="faq-card glass">
+              <h4>3. Apply directly</h4>
+              <p>Open official application links and submit before the closing date.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <section class="admin-dashboard hidden" id="adminDashboard">
+        <div class="admin-header glass">
+          <div>
+            <span class="eyebrow">Admin Panel</span>
+            <h3>Government Jobs & Schemes Management</h3>
+          </div>
+          <button class="ghost-btn" id="backToUserBtn">Back to Portal</button>
+        </div>
+
+        <div class="admin-grid">
+          <div class="admin-card glass">
+            <h4>Add New Job</h4>
+            <form id="jobForm" class="admin-form">
+              <input type="text" id="jobTitle" placeholder="Job Title" required />
+              <input type="text" id="jobCategory" placeholder="Category (SSC, UPSC... )" required />
+              <input type="text" id="jobDept" placeholder="Department" required />
+              <textarea id="jobDescription" placeholder="Description" rows="3" required></textarea>
+              <input type="text" id="jobDeadline" placeholder="Deadline" required />
+              <input type="url" id="jobLink" placeholder="Form Link URL" required />
+              <button type="submit" class="primary-btn">Save Job</button>
+            </form>
+          </div>
+
+          <div class="admin-card glass">
+            <h4>Add New Scheme</h4>
+            <form id="schemeForm" class="admin-form">
+              <input type="text" id="schemeTitle" placeholder="Scheme Name" required />
+              <input type="text" id="schemeType" placeholder="Type" required />
+              <textarea id="schemeDescription" placeholder="Description" rows="3" required></textarea>
+              <input type="url" id="schemeLink" placeholder="Form Link URL" required />
+              <button type="submit" class="primary-btn">Save Scheme</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="admin-grid lower">
+          <div class="admin-card glass">
+            <h4>Job Entries</h4>
+            <div class="table-list" id="adminJobsList"></div>
+          </div>
+
+          <div class="admin-card glass">
+            <h4>Scheme Entries</h4>
+            <div class="table-list" id="adminSchemesList"></div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer glass">
+        <p>© 2026 GovJobHub • Government Jobs, Exams & Schemes</p>
+      </footer>
+    </div>
+
+    <div class="admin-login-panel hidden" id="adminLoginPanel">
+      <div class="admin-modal glass">
+        <h3>Admin Login</h3>
+        <label>
+          Username
+          <input id="adminUser" type="text" placeholder="admin@govjobs.com" />
+        </label>
+        <label>
+          Password
+          <input id="adminPass" type="password" placeholder="••••••••" />
+        </label>
+        <div class="admin-actions">
+          <button class="primary-btn" id="adminLoginSubmit">Login</button>
+          <button class="ghost-btn" id="closeAdminModal">Close</button>
+        </div>
+        <p class="demo-note">Demo admin: admin@govjobs.com / admin123</p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
